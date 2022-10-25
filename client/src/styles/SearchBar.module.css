@@ -1,0 +1,18 @@
+.bar input{
+    height: 30px;
+    margin: auto;
+    border: inset #5499C7;
+    border-radius: 10px;
+}
+.bar button{
+  height: 30px;
+  width: 100px;
+  margin: auto;
+  border: inset #5499C7;
+  border-radius: 10px;
+  background-color: #34495E;
+  color: #fff;
+}
+.bar button:hover{
+  background-color: #5499C7;
+}
