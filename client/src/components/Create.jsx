@@ -14,12 +14,12 @@ export default function Create(){
 
     const [input, setInput] = useState({
         name: "",
-        life: 0,
-        attack: 0,
-        defending: 0,
-        speed: 0,
-        height: 0,
-        weight: 0,
+        life: null,
+        attack: null,
+        defending: null,
+        speed: null,
+        height: null,
+        weight: null,
         image: "",
         types: []
     })
@@ -51,8 +51,7 @@ export default function Create(){
             } else {
               alert("Choose only two types, please");
             }
-        }
-        console.log(input)  
+        } 
     }
 
     function handleDelete(t){
@@ -75,7 +74,6 @@ export default function Create(){
               alert("Incomplete required fields!");
             }
         }
-        console.log(input)
     }
 
     function validate(input){
@@ -95,7 +93,6 @@ export default function Create(){
         }else if(!/^(ftp|http|https):\/\/[^ "]+$/.test(input.image)) {
             error.image = "Img must be a valid URL";
         }
-        console.log(error)
         return error
     }
     function handleError(e){
@@ -117,61 +114,68 @@ export default function Create(){
                         <label className={style.title}>Name: </label>
                         <input placeholder="Name..." type={"text"} name={"name"} value={input.name}  onChange={(e) => handleChange(e)} />
                     </div>
-                {errors.name && ( <p>{errors.name}</p> )}
-                <div className={style.div}>
-                    <label className={style.title}>Image: </label>
-                    <input placeholder="Image..." type={"text"} name={"image"} value={input.image}  onChange={(e) => handleChange(e)} />
-                </div>
-                <p>{errors.image}</p>
+                        {errors.name && ( <p className={style.p}>{errors.name}</p> )}
+                    <div className={style.div}>
+                        <label className={style.title}>Image: </label>
+                        <input placeholder="Image..." type={"text"} name={"image"} value={input.image}  onChange={(e) => handleChange(e)} />
+                    </div>
+                        <p className={style.p} >{errors.image}</p>
 
-                <div className={style.caracter}>
-                <div className={style.min}>
-                    <div className={style.div}>
-                    <label className={style.title}>Hp: </label>
-                    <input className={style.input} type="number" name={"life"}   min="0" max="100" value={input.life} onChange={(e) => handleChange(e)} />
+                    <div className={style.caracter}>
+                        <div className={style.min}>
+                            <div className={style.div}>
+                                <label className={style.title}>Hp: </label>
+                                <input className={style.input} type="number" name={"life"}   min="0" max="100" value={input.life} onChange={(e) => handleChange(e)} />
+                            </div>
+                            <div className={style.div}>
+                                <label className={style.title}>Attack: </label>
+                                <input  type={"number"} name={"attack"} min="0" max="100" value={input.attack}   onChange={(e) => handleChange(e)} />
+                            </div>
+                            <div className={style.div}>
+                                <label className={style.title}>Defending: </label>
+                                <input  type={"number"} name={"defending"} min="0" max="100" value={input.defending}  onChange={(e) => handleChange(e)} />
+                            </div>
+                        </div>
+                        <div className={style.min}>
+                            <div className={style.div}>
+                                <label className={style.title}>Speed: </label>
+                                <input  type={"number"} name={"speed"} min="0" max="100" value={input.speed}  onChange={(e) => handleChange(e)} />
+                            </div>
+                            <div className={style.div}>
+                                <label className={style.title}>Height: </label>
+                                <input  type={"number"} name={"height"} min="0" max="100" value={input.height}  onChange={(e) => handleChange(e)} />
+                            </div>
+                            <div className={style.div}>
+                                <label className={style.title}>Weight: </label>
+                                <input  type={"number"} name={"weight"} min="0" max="100" value={input.weight}  onChange={(e) => handleChange(e)} /> 
+                            </div>
+                        </div>
                     </div>
-                    <div className={style.div}>
-                    <label className={style.title}>Attack: </label>
-                    <input  type={"number"} name={"attack"} min="0" max="100" value={input.attack}   onChange={(e) => handleChange(e)} />
-                    </div>
-                    <div className={style.div}>
-                    <label className={style.title}>Defending: </label>
-                    <input  type={"number"} name={"defending"} min="0" max="100" value={input.defending}  onChange={(e) => handleChange(e)} />
-                    </div>
-                </div>
-                <div className={style.min}>
-                    <div className={style.div}>
-                    <label className={style.title}>Speed: </label>
-                    <input  type={"number"} name={"speed"} min="0" max="100" value={input.speed}  onChange={(e) => handleChange(e)} />
-                    </div>
-                    <div className={style.div}>
-                    <label className={style.title}>Height: </label>
-                    <input  type={"number"} name={"height"} min="0" max="100" value={input.height}  onChange={(e) => handleChange(e)} />
-                    </div>
-                    <div className={style.div}>
-                    <label className={style.title}>Weight: </label>
-                    <input  type={"number"} name={"weight"} min="0" max="100" value={input.weight}  onChange={(e) => handleChange(e)} /> 
-                    </div>
-                </div>
-                </div>
-                <div >
-                <select className={style.select} onChange={(e) => handleSelectTypes(e)}> 
-                    <option>Select Types</option>
-                    {types.map((t) =>(
+                    <div className={style.containers}>
+                        <div className={style.floatSelect}>
+                            <select className={style.select} onChange={(e) => handleSelectTypes(e)}> 
+                            <option disabled selected>Select Types</option>
+                            {types.map((t) =>(
                             <option key={t.id} name="types" value={t.name}>{t.name}</option>
-                        ))}
-                </select>
-                </div>
-                    {input.name !== ""? 
-                    (<button className={style.btn2} type="submit">Create!</button>) : 
-                    (<button className={style.btn2} onClick={handleError}>Create!</button>)}    
-            </form> 
+                             ))}
+                            </select>
+                        </div>
 
-            {input.types.map(t => 
-                <div>
-                    <p>{t}</p>
-                    <button onClick={() => handleDelete(t)}>X</button>
-                </div>)} 
+                            {input.types.map(t => 
+                        <div className={style.delete}>
+                            <p className={style.type}>{t}</p>
+                            <button className={style.btn1} type="button" onClick={() => handleDelete(t)}>X</button>
+                            
+                        </div>)} 
+                    </div>
+                    <div>
+                        {input.name !== ""? 
+                        (<button className={style.btn2} type="submit">Create!</button>) : 
+                        (<button className={style.btn2} onClick={handleError}>Create!</button>)}
+                    </div>       
+                </form> 
+
+                
             </div>
         </div>
     )

@@ -60,10 +60,10 @@ const Home = () => {
     }
 
     return(
-        <React.Fragment>
-            <div className={style.body} >             
+        
+            <div>             
                 <NavBar handleClick={handleClick}/>
-                <div >
+                <div className={style.body}>
                     <div>
                         <Filter 
                         handleFilterTypes={handleFilterTypes}
@@ -89,7 +89,7 @@ const Home = () => {
                     </div> : <Loading/>}
                 </div>
             </div>  
-        </React.Fragment>
+        
     )
 }
 

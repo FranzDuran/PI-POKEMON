@@ -23,7 +23,7 @@ export default function SearchBar(){
 
     return(
         <div className={s.bar}>
-            <input type={"text"} placeholder={"Buscar..."} onChange={(e) => handleNamePokemon(e)}/>
+            <input type={"text"} placeholder={"Search..."} onChange={(e) => handleNamePokemon(e)}/>
             <button type="submit" onClick={(e) => handleSubmit(e)}>Search</button>
         </div>
 

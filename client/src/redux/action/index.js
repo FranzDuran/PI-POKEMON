@@ -26,7 +26,6 @@ export function getDetail(id){
     return async function(dispatch){
         try{
             const response = await axios.get("http://localhost:3001/pokemons/" + id)
-            //console.log(response)
             return dispatch({
                 type: "GET_DETAIL",
                 payload: response.data

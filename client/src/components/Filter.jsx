@@ -6,7 +6,7 @@ export default function Filter({handleFilterTypes, handleFilterCreated,handleOrd
         <div className={style.filter}>
             <select className={style.select} onChange={e => handleFilterTypes(e)}>
                 <option disabled selected>Select Types</option>
-                <option value={"allType"}>Todos los Tipos</option>
+                <option value={"allType"}>all Types</option>
                 <option value={"normal"}>normal</option>
                 <option value={"fighting"}>fighting</option>
                 <option value={"flying"}>flying</option>
@@ -31,8 +31,8 @@ export default function Filter({handleFilterTypes, handleFilterCreated,handleOrd
             <select className={style.select} onChange={(e) => handleFilterCreated(e)}>
                 <option disabled selected> Filter by origin </option>
                 <option value={"allPoke"}>All Pokemons</option>
-                <option value={"api"}>Existentes</option>
-                <option value={"db"}>Creados</option>
+                <option value={"api"}>Api pokemons</option>
+                <option value={"db"}>Db pokemons</option>
             </select>
             <select className={style.select} onChange={(e) => handleOrderName(e)}>
                 <option disabled selected> Order alphabetically </option>
@@ -41,8 +41,8 @@ export default function Filter({handleFilterTypes, handleFilterCreated,handleOrd
             </select>
             <select className={style.select} onChange={(e) => handleOrderByAttack(e)}>
                 <option disabled selected> Order by strength </option>
-                <option value={"max"}>Ataque alto</option>
-                <option value={"min"}>Ataque bajo</option>
+                <option value={"max"}>High attack</option>
+                <option value={"min"}>Low attack</option>
             </select>
         </div>
     )
