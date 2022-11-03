@@ -7,12 +7,11 @@ import s from "../styles/SearchBar.module.css"
 export default function SearchBar(){
     const dispatch = useDispatch()
     const [name, setName] = useState("")
-    const [currentPage, setCurrentPage] = useState(1);
+    const [, setCurrentPage] = useState(1);
 
     function handleNamePokemon(e){
         e.preventDefault()
         setName(e.target.value)
-        //console.log(name)
     }
 
     function handleSubmit(e){
