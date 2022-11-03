@@ -63,10 +63,10 @@ export default function Create(){
     function handleSubmit(e){
         e.preventDefault();
         if (!errors.name && !errors.image && input.types.length > 0) {
-            dispatch(postPokemon(input));
+            postPokemon(input);
             alert('Poke created!')
             history.push('/home')
-        } else {
+        }else {
             if (input.types.length <= 0) {
               alert("Types are missing");
             } else {
@@ -174,7 +174,7 @@ export default function Create(){
                         </div>)} 
                     </div>
                     <div>
-                        {input.name !== "" && input.attack < 0? 
+                        {input.name !== ""? 
                         (<button className={style.btn2} type="submit">Create!</button>) : 
                         (<button className={style.btn2} onClick={handleError}>Create!</button>)}
                     </div>       

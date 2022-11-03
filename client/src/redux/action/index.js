@@ -19,7 +19,7 @@ export function getNamePokemon(name){
                 payload: response.data
             })
         }catch(error){
-            console.log(error)
+            console.error(error)
         }   
     }
 }
@@ -32,7 +32,7 @@ export function getDetail(id){
                 payload: response.data
             })
         }catch(error){
-            console.log(error)
+            console.error(error)
         }
     }
 }
@@ -45,18 +45,16 @@ export function getTypes(){
                 payload: response.data
             })
         }catch(error){
-            console.log(error)
+            console.error(error)
         }
     }
 }
-export function postPokemon(payload){
-    return async function(dispatch){
-        try{
-            const response = await axios.post(`${urlBack}pokemons`, payload)
-            return response;
-        }catch(error){
-            console.log(error)
-        }
+export async function postPokemon(payload){
+    try{
+        const response = await axios.post(`${urlBack}pokemons`, payload)
+        return response;
+    }catch(error){
+        console.error(error)
     }
 }
 export function filterPokemonsByTypes(payload){
