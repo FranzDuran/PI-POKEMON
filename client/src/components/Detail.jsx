@@ -13,11 +13,11 @@ export default function Detail(props){
     const myPokemon = useSelector((state) => state.detail)
     useEffect(()=>{
         dispatch(delay())
-    },[])
+    },[dispatch])
 
     useEffect(()=>{
         dispatch(getDetail(id))
-    },[])
+    },[dispatch, id])
 
     return(
         <div className={style.body}>
