@@ -15,7 +15,7 @@ const Home = () => {
     const [order, setOrder] = useState("")
     const [attack, setAttack] = useState("")
     const [currentPage, setCurrentPage] = useState(1);
-    const [pokemonsPerPage, setPokemonsPerPage] = useState(12);
+    const [pokemonsPerPage] = useState(12);
     const indexOfLastPokemons = currentPage * pokemonsPerPage;
     const indexOfFirstPokemons = indexOfLastPokemons - pokemonsPerPage;
     const currentPokemons = allPokes.slice(indexOfFirstPokemons, indexOfLastPokemons);
@@ -49,14 +49,14 @@ const Home = () => {
         e.preventDefault();
         dispatch(orderByName(e.target.value))
         setCurrentPage(1)
-        setOrder(`ordenado ${e.target.value}`)
+        setOrder(`ordenado ${order} ${e.target.value}`)
     }
 
     function handleOrderByAttack(e){
         e.preventDefault()
         dispatch(orderByAttack(e.target.value))
         setCurrentPage(1)
-        setAttack(`ordenado ${e.target.value}`)   
+        setAttack(`ordenado${attack} ${e.target.value}`)   
     }
 
     return(

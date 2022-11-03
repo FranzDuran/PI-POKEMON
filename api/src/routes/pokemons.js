@@ -54,9 +54,13 @@ router.post("/", async (req, res) => {
         if(name){
             const pokemon = await Pokemon.create({ name, image, life, attack, defending, speed, height, weight })
 
-            types.forEach(async(t) => {
-                await pokemon.addType(t.id)              
-            });
+            
+            const typesDb = await Type.findAll({
+                where: {name: types}
+            })
+            await pokemon.addType(typesDb.map(a=> a))
+        
+                        
             return res.status(200).send(pokemon)
         }
         return res.status(400).send({message: "Name is required"}) 
@@ -68,22 +72,3 @@ router.post("/", async (req, res) => {
 
 module.exports = router;
 
-/* try {       
-        const {id} = req.params;
-        console.log(id)
-        if (id){
-            let pokemonSearch = null;
-            if (isNaN(id)){
-                pokemonSearch = await getPokemonDbById(id);
-            } else {
-                pokemonSearch = await getPokemonApiById(id);
-            }
-            if (pokemonSearch){ 
-                return res.status(200).json(pokemonSearch);
-            }
-            return res.status(400).send({message: "Id not found"});
-        }
-        return res.status(400).send({message: "Id not found"});
-    } catch (error) {
-        res.status(400).send({error: error.message});
-    } */

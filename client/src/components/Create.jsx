@@ -10,7 +10,6 @@ export default function Create(){
     const types = useSelector((state) => state.allTypes)
     const allPokes = useSelector((state) => state.allPokemons).map(n => n.name)
     const [errors, setErrors] = useState({})
-    const [isSubmit, setIsSumit] = useState(false)
 
     const [input, setInput] = useState({
         name: "",
@@ -93,6 +92,11 @@ export default function Create(){
         }else if(!/^(ftp|http|https):\/\/[^ "]+$/.test(input.image)) {
             error.image = "Img must be a valid URL";
         }
+        if(!input.attack){
+            error.attack = "el ataque tiene que tener un rango de 0 a 100"
+        } else if(input.attack < 0){
+            error.attack= "no se permite numero negativos"
+        }
         return error
     }
     function handleError(e){
@@ -125,29 +129,30 @@ export default function Create(){
                         <div className={style.min}>
                             <div className={style.div}>
                                 <label className={style.title}>Hp: </label>
-                                <input className={style.input} type="number" name={"life"}   min="0" max="100" value={input.life} onChange={(e) => handleChange(e)} />
+                                <input className={style.input} type="number" name={"life"}   value={input.life} onChange={(e) => handleChange(e)} />
                             </div>
                             <div className={style.div}>
                                 <label className={style.title}>Attack: </label>
-                                <input  type={"number"} name={"attack"} min="0" max="100" value={input.attack}   onChange={(e) => handleChange(e)} />
+                                <input  type={"number"} name={"attack"}  value={input.attack}   onChange={(e) => handleChange(e)} />
                             </div>
+                            <p>{errors.attack}</p>
                             <div className={style.div}>
                                 <label className={style.title}>Defending: </label>
-                                <input  type={"number"} name={"defending"} min="0" max="100" value={input.defending}  onChange={(e) => handleChange(e)} />
+                                <input  type={"number"} name={"defending"} value={input.defending}  onChange={(e) => handleChange(e)} />
                             </div>
                         </div>
                         <div className={style.min}>
                             <div className={style.div}>
                                 <label className={style.title}>Speed: </label>
-                                <input  type={"number"} name={"speed"} min="0" max="100" value={input.speed}  onChange={(e) => handleChange(e)} />
+                                <input  type={"number"} name={"speed"}  value={input.speed}  onChange={(e) => handleChange(e)} />
                             </div>
                             <div className={style.div}>
                                 <label className={style.title}>Height: </label>
-                                <input  type={"number"} name={"height"} min="0" max="100" value={input.height}  onChange={(e) => handleChange(e)} />
+                                <input  type={"number"} name={"height"}  value={input.height}  onChange={(e) => handleChange(e)} />
                             </div>
                             <div className={style.div}>
                                 <label className={style.title}>Weight: </label>
-                                <input  type={"number"} name={"weight"} min="0" max="100" value={input.weight}  onChange={(e) => handleChange(e)} /> 
+                                <input  type={"number"} name={"weight"}  value={input.weight}  onChange={(e) => handleChange(e)} /> 
                             </div>
                         </div>
                     </div>
@@ -169,7 +174,7 @@ export default function Create(){
                         </div>)} 
                     </div>
                     <div>
-                        {input.name !== ""? 
+                        {input.name !== "" && input.attack < 0? 
                         (<button className={style.btn2} type="submit">Create!</button>) : 
                         (<button className={style.btn2} onClick={handleError}>Create!</button>)}
                     </div>       

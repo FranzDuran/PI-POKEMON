@@ -11,7 +11,6 @@ export default function Detail(props){
     const dispatch = useDispatch()
     const { id } = useParams()
     const myPokemon = useSelector((state) => state.detail)
-    console.log(myPokemon)
     useEffect(()=>{
         dispatch(delay())
     },[])

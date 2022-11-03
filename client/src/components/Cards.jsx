@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Fragment } from "react";
 import style from "../styles/Card.module.css"
 
-export default function({currentPokemons}){
+export default function Cards({currentPokemons}){
     return(
         <div className={style.container}>
             {currentPokemons?.map(poke => {

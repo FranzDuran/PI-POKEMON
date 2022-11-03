@@ -12,6 +12,7 @@ export default function SearchBar(){
     function handleNamePokemon(e){
         e.preventDefault()
         setName(e.target.value)
+        //console.log(name)
     }
 
     function handleSubmit(e){
